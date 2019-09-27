@@ -1,5 +1,6 @@
 import unittest
 import lowestCommonAncestor as lca
+import binaryTree.py as bt
 
 
 class MyTestCase(unittest.TestCase):
@@ -12,7 +13,7 @@ class MyTestCase(unittest.TestCase):
         data = None
         node1_val = None
         node2_val = None
-        root = lca.construct_bt(data)
+        root = bt.construct_bt(data)
         result = lca.lowest_common_ancestor(root, node1_val, node2_val)
 
         self.assertEqual(result.value, None)
