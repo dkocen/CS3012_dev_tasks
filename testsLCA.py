@@ -1,44 +1,47 @@
 import unittest
-import lowestCommonAncestor as lca
-import binaryTree.py as bt
+import lowestCommonAncestor
+import binaryTree as bt
 
 
 class MyTestCase(unittest.TestCase):
     def test_something(self):
-        self.assertEqual(True, False)
+        self.assertEqual(True, True)
 
     def test_empty_tree(self):
         """Test that an empty tree returns None for LCA"""
 
-        data = None
+        data = [None]
         node1_val = None
         node2_val = None
-        root = bt.construct_bt(data)
-        result = lca.lowest_common_ancestor(root, node1_val, node2_val)
+        tree = bt.BinaryTree(data)
+        lca = lowestCommonAncestor.LowestCommonAncestor(tree.root, node1_val, node2_val)
 
-        self.assertEqual(result.value, None)
+        self.assertEqual(tree.inorder, [None], f'Incorrect tree: {tree.inorder}. Should be {None}')
+        self.assertEqual(lca.answer.key, None, f'Incorrect LCA: {lca.answer}. Should be {None}')
 
     def test_single_node(self):
         """Test that single node tree returns single node for LCA"""
 
-        data = [0]
+        data = [-1]
         node1_val = 0
         node2_val = 0
-        root = lca.construct_bt(data)
-        result = lca.lowest_common_ancestor(root, node1_val, node2_val)
+        tree = bt.BinaryTree(data)
+        lca = lowestCommonAncestor.LowestCommonAncestor(tree.root, node1_val, node2_val)
 
-        self.assertEqual(result.value, 0)
+        self.assertEqual(tree.inorder, [0], f'Incorrect tree: {tree.inorder}. Should be {[0]}')
+        self.assertEqual(lca.answer.key, 0, f'Incorrect LCA: {lca.answer}. Should be {0}')
 
     def test_simple_tree(self):
         """Tests simple binary tree where root is LCA"""
 
-        data = [0,1,2]
+        data = [-1, 0, 0]
         node1_val = 1
         node2_val = 2
-        root = lca.construct_bt(data)
-        result = lca.lowest_common_ancestor(root, node1_val, node2_val)
+        tree = bt.BinaryTree(data)
+        lca = lowestCommonAncestor.LowestCommonAncestor(tree.root, node1_val, node2_val)
 
-        self.assertEqual(result.value, 0)
+        self.assertEqual(tree.inorder, [1, 0, 2], f'Incorrect tree: {tree.inorder}. Should be [1, 0, 2]')
+        self.assertEqual(lca.answer.key, 0, f'Incorrect LCA: {lca.answer}. Should be {0}')
 
 if __name__ == '__main__':
     unittest.main()

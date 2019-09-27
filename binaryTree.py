@@ -1,3 +1,5 @@
+import lowestCommonAncestor as LCA
+
 class Node:
     def __init__(self, value):
         self.key = value
@@ -50,8 +52,11 @@ class BinaryTree:
 
 
 if __name__ == '__main__':
-    data = [-1, 0, 0, 1, 1, 3, 5]
-    bt= BinaryTree(data)
+    data = [-1]
+    bt = BinaryTree(data)
     print(bt.inorder)
+
+    lca = LCA.LowestCommonAncestor(bt.root, 1, 2)
+    print(lca.answer.key)
 
 
