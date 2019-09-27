@@ -33,20 +33,24 @@ def construct_bt(data):
     root = [None]
     for i in range(n):
         create_node(data, i, created, root)
+
     return root[0]
 
-
 def inorder(root):
-    if root is not None:
-        inorder(root.left)
-        print(root.key, end = ' ')
-        inorder(root.right)
+    if root is None:
+        return []
+
+    left_list = inorder(root.left)
+    right_list = inorder(root.right)
+    return left_list + [root.key] + right_list
+
 
 
 if __name__ == '__main__':
     data = [-1, 0, 0, 1, 1, 3, 5]
     root = construct_bt(data)
     print('Inorder traversal of constructed tree:')
-    inorder(root)
+    print(inorder(root))
+
 
 
