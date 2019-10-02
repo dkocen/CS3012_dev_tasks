@@ -18,7 +18,7 @@ class LowestCommonAncestor:
             left = recurse_tree(current_node.left)
             right = recurse_tree(current_node.right)
 
-            mid = current_node.key == p or current_node.key == q
+            mid = current_node.value == p or current_node.value == q
 
             if mid + left + right >= 2:
                 self.answer = current_node
