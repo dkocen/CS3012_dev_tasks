@@ -1,6 +1,6 @@
 import unittest
 import lowestCommonAncestor
-import binaryTree as bt
+from binarytree import tree, bst, heap
 
 
 class MyTestCase(unittest.TestCase):
@@ -21,6 +21,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_single_node(self):
         """Test that single node tree returns single node for LCA"""
+        tree = tree(height=)
 
         data = [-1]
         node1_val = 0
