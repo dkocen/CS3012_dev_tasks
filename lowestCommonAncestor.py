@@ -1,7 +1,10 @@
 class LowestCommonAncestor:
     def __init__(self, root, p, q):
-        self.answer = None
-        self.lowest_common_ancestor(root, p, q)
+        if p == q:
+            self.answer = p
+        else:
+            self.answer = None
+            self.lowest_common_ancestor(root, p, q)
 
     def lowest_common_ancestor(self, root, p, q):
         """
