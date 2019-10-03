@@ -1,31 +1,29 @@
-class LowestCommonAncestor:
-    def __init__(self, root, p, q):
-        if p == q:
-            self.answer = p
-        else:
-            self.answer = None
-            self.lowest_common_ancestor(root, p, q)
+# This function returns pointer to LCA of two given
+# values n1 and n2
+# This function assumes that n1 and n2 are present in
+# Binary Tree
+def findLCA(root, n1, n2):
+    # Base Case
+    if n1 == n2:
+        return n1
+    if root is None:
+        return None
 
-    def lowest_common_ancestor(self, root, p, q):
-        """
-        :param root: TreeNode
-        :param p: TreeNode
-        :param q: TreeNode
-        :return: TreeNode
-        """
+    # If either n1 or n2 matches with root's key, report
+    #  the presence by returning root (Note that if a key is
+    #  ancestor of other, then the ancestor key becomes LCA
+    if root == n1 or root == n2:
+        return root
 
-        def recurse_tree(current_node):
-            if not current_node:
-                return False
+        # Look for keys in left and right subtrees
+    left_lca = findLCA(root.left, n1, n2)
+    right_lca = findLCA(root.right, n1, n2)
 
-            left = recurse_tree(current_node.left)
-            right = recurse_tree(current_node.right)
+    # If both of the above calls return Non-NULL, then one key
+    # is present in once subtree and other is present in other,
+    # So this node is the LCA
+    if left_lca and right_lca:
+        return root
 
-            mid = current_node.value == p or current_node.value == q
-
-            if mid + left + right >= 2:
-                self.answer = current_node
-
-            return mid or left or right
-
-        recurse_tree(root)
+        # Otherwise check if left subtree or right subtree is LCA
+    return left_lca if left_lca is not None else right_lca
