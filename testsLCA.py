@@ -21,11 +21,13 @@ class MyTestCase(unittest.TestCase):
         root = tree(height=0)
         lca = lowestCommonAncestor.LowestCommonAncestor(root, root, root)
 
-        self.assertEqual(root.levelorder, [Node(0)], f'Incorrect tree: {root.levelorder}. Should be {[Node(0)]}')
+        self.assertEqual(str(list(root)), str([Node(0)]), f'Incorrect tree: {root.levelorder}. Should be {[Node(0)]}')
         self.assertEqual(lca.answer, Node(0), f'Incorrect LCA: {lca.answer}. Should be {Node(0)}')
 
     def test_simple_tree(self):
         """Tests simple binary tree where root is LCA"""
+
+        root = tree(height=1, is_perfect=True)
 
         data = [-1, 0, 0]
         node1_val = 1
