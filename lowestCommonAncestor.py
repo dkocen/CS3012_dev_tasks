@@ -2,6 +2,8 @@
 # values n1 and n2
 # This function assumes that n1 and n2 are present in
 # Binary Tree
+
+
 def findLCA(root, n1, n2):
     # Base Case
     if n1 == n2:
