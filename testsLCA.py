@@ -91,5 +91,16 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(lca2, root.left, f'Incorrect LCA {lca2}. Should be {root.left}')
         self.assertEqual(lca3, root.left.right.left.left, f'Incorrect LCA {lca3}. Should be {root.left.right.left.left}')
 
+    def test_simple_dag(self):
+        """Tests a basic DAG"""
+        graph = [(0, 1), [0, 2], [1, 3], [2, 3], [1, 4]]
+        lca1 = LCA.findLCA(graph, 1, 2)
+        lca2 = LCA.findLCA(graph, 1, 3)
+        lca3 = LCA.findLCA(graph, 3, 4)
+
+        self.assertEqual(lca1, 0, f'Incorrect LCA {lca1}. Should be {0}')
+        self.assertEqual(lca2, 1, f'Incorrect LCA {lca2}. Should be {1}')
+        self.assertEqual(lca3, 1, f'Incorrect LCA {lca3}. Should be {1}')
+
 if __name__ == '__main__':
     unittest.main()
