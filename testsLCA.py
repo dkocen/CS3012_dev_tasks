@@ -57,7 +57,11 @@ class MyTestCase(unittest.TestCase):
 
     def test_balanced_tree(self):
         """Tests a balanced tree based on generated list of 100 random numbers online"""
-        values = [10, 12, 14, 24, 39, 50, 54, 62, 67, 92, 134, 153, 161, 162, 167, 171, 172, 173, 191, 193, 197, 205, 206, 208, 210, 211, 222, 239, 240, 246, 249, 253, 263, 270, 286, 299, 303, 305, 308, 316, 319, 325, 344, 349, 350, 353, 363, 365, 371, 395, 414, 437, 453, 459, 463, 489, 500, 503, 512, 514, 515, 516, 518, 530, 553, 558, 573, 574, 578, 586, 590, 602, 607, 618, 636, 638, 647, 676, 690, 691, 716, 761, 767, 798, 811, 815, 836, 843, 849, 867, 882, 903, 919, 921, 943, 948, 958, 959, 980, 997]
+        values = [10, 12, 14, 24, 39, 50, 54, 62, 67, 92, 134, 153, 161, 162, 167, 171, 172, 173, 191, 193, 197, 205,
+                  206, 208, 210, 211, 222, 239, 240, 246, 249, 253, 263, 270, 286, 299, 303, 305, 308, 316, 319, 325,
+                  344, 349, 350, 353, 363, 365, 371, 395, 414, 437, 453, 459, 463, 489, 500, 503, 512, 514, 515, 516,
+                  518, 530, 553, 558, 573, 574, 578, 586, 590, 602, 607, 618, 636, 638, 647, 676, 690, 691, 716, 761,
+                  767, 798, 811, 815, 836, 843, 849, 867, 882, 903, 919, 921, 943, 948, 958, 959, 980, 997]
 
         root = build(values)
         lca1 = LCA.findLCA(root, root.left.left.left.left.right, root.right.left.left.right.left.left)
@@ -89,11 +93,12 @@ class MyTestCase(unittest.TestCase):
 
         self.assertEqual(lca1, root, f'Incorrect LCA {lca1}. Should be {root}')
         self.assertEqual(lca2, root.left, f'Incorrect LCA {lca2}. Should be {root.left}')
-        self.assertEqual(lca3, root.left.right.left.left, f'Incorrect LCA {lca3}. Should be {root.left.right.left.left}')
+        self.assertEqual(lca3, root.left.right.left.left,
+                         f'Incorrect LCA {lca3}. Should be {root.left.right.left.left}')
 
     def test_simple_dag(self):
         """Tests a basic DAG"""
-        graph = [(0, 1), [0, 2], [1, 3], [2, 3], [1, 4]]
+        graph = [[0, 1], [0, 2], [1, 3], [2, 3], [1, 4]]
         lca1 = LCA.findLCA(graph, 1, 2)
         lca2 = LCA.findLCA(graph, 1, 3)
         lca3 = LCA.findLCA(graph, 3, 4)
@@ -101,6 +106,12 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(lca1, 0, f'Incorrect LCA {lca1}. Should be {0}')
         self.assertEqual(lca2, 1, f'Incorrect LCA {lca2}. Should be {1}')
         self.assertEqual(lca3, 1, f'Incorrect LCA {lca3}. Should be {1}')
+
+    def test_slides_dag(self):
+        """Tests DAG given in slides"""
+        graph = [[0, 1], [0, 2], [1, 3], [2, 4], [3, 5], [4, 5], [5, 6]]
+
+
 
 if __name__ == '__main__':
     unittest.main()
