@@ -1,6 +1,7 @@
 import unittest
 import lowestCommonAncestor as LCA
 from binarytree import tree, build, Node
+import networkx as nx
 
 
 class MyTestCase(unittest.TestCase):
@@ -90,6 +91,10 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(lca1, root, f'Incorrect LCA {lca1}. Should be {root}')
         self.assertEqual(lca2, root.left, f'Incorrect LCA {lca2}. Should be {root.left}')
         self.assertEqual(lca3, root.left.right.left.left, f'Incorrect LCA {lca3}. Should be {root.left.right.left.left}')
+
+    def test_non_binary_tree(self):
+        """Tests a simple non_binary tree (three nodes for one branch"""
+        
 
 if __name__ == '__main__':
     unittest.main()
