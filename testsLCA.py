@@ -4,6 +4,15 @@ from binarytree import tree, build, Node
 import networkx as nx
 
 
+class ThreeNode:
+    """Used for making a non-binary tree"""
+    def __init__(self, value, left=None, center=None, right=None):
+        self.value = value
+        self.left = left
+        self.center = center
+        self.right = right
+
+
 class MyTestCase(unittest.TestCase):
     def test_something(self):
         self.assertEqual(True, True)
@@ -92,8 +101,42 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(lca2, root.left, f'Incorrect LCA {lca2}. Should be {root.left}')
         self.assertEqual(lca3, root.left.right.left.left, f'Incorrect LCA {lca3}. Should be {root.left.right.left.left}')
 
+    def test_lca_multiple_nodes(self):
+        root = Node(67)
+        root.left = Node(11)
+        root.right = Node(82)
+        root.left.left = Node(4)
+        root.left.right = Node(60)
+        root.left.right.left = Node(52)
+        root.left.right.left.left = Node(23)
+        root.left.right.left.left.right = Node(38)
+        root.left.right.left.left.left = Node(74)
+        root.left.right.left.left.right.left = Node(46)
+
+        lca = LCA.findLCA(root, root.left.left, root.right, root.left.right.left.left)
+
+        self.assertEqual(lca, root, f'Incorrect LCA {lca}. Should be {root}')
+
     def test_non_binary_tree(self):
-        """Tests a simple non_binary tree (three nodes for one branch"""
+        """Tests a simple non_binary tree (from slide 3 of LCA slides)"""
+
+        root = Node(1)
+        root.left = Node(2)
+        root.right = Node(3)
+        root.left.left = Node(4)
+        root.left.left.left = Node(6)
+        root.right.left = Node(5)
+        root.right.left.left = Node(7)
+        root.right.left.right = Node(8)
+        root.right.left.left.left = ThreeNode(10)
+        root.right.left.left.left.left = Node(9)
+        root.right.left.left.left.center = Node(13)
+        root.right.left.left.left.right = Node(11)
+        root.right.left.left.left.right.left = Node(12)
+
+        lca = LCA.findLCA(root, root.right.left.right, root.right.left.left.left.left)
+
+        self.assertEqual(lca, root.right.left, f'Incorrect LCA {lca1}. Should be {root.right.left}')
 
     def test_simple_dag(self):
         """Tests a basic DAG"""
