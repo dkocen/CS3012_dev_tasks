@@ -123,12 +123,10 @@ class MyTestCase(unittest.TestCase):
         lca1 = LCA.findLCA(graph, 3, 2)
         lca2 = LCA.findLCA(graph, 0, 6)
         lca3 = LCA.findLCA(graph, 3, 5)
-        lca4 = LCA.findLCA(graph, 3, 6, 2)
 
         self.assertEqual(lca1, 0, f'Incorrect LCA {lca1}. Should be {0}')
         self.assertEqual(lca2, 0, f'Incorrect LCA {lca2}. Should be {0}')
         self.assertEqual(lca3, 3, f'Incorrect LCA {lca3}. Should be {3}')
-        self.assertEqual(lca4, 0, f'Incorrect LCA {lca4}. Should be {0}')
 
     def test_complex_dag(self):
         """Tests a complex DAG found online"""
@@ -140,13 +138,33 @@ class MyTestCase(unittest.TestCase):
 
         lca1 = LCA.findLCA(graph, 0, 19)
         lca2 = LCA.findLCA(graph, 17, 15)
-        lca3 = LCA.findLCA(graph, 5, 10, 19)
-        lca4 = LCA.findLCA(graph, 1, 14, 18)
 
         self.assertEqual(lca1, 0, f'Incorrect LCA {lca1}. Should be {0}')
         self.assertEqual(lca2, 8, f'Incorrect LCA {lca2}. Should be {8}')
-        self.assertEqual(lca3, 5, f'Incorrect LCA {lca3}. Should be {5}')
-        self.assertEqual(lca4, 0, f'Incorrect LCA {lca4}. Should be {0}')
+
+    def test_slides_dag_multnodes(self):
+        """Tests slides DAG LCA for multiple nodes"""
+
+        graph = [[0, 1], [0, 2], [1, 3], [2, 4], [3, 5], [4, 5], [5, 6]]
+
+        lca = LCA.findLCA(graph, 3, 6, 2)
+
+        self.assertEqual(lca, 0, f'Incorrect LCA {lca}. Should be {0}')
+
+    def test_complex_dag_multnodes(self):
+        """Tests complex DAG LCA for multiple nodes"""
+
+        graph = [[0, 2], [0, 12], [0, 14], [1, 11], [1, 16], [1, 13], [2, 6], [2, 13], [2, 16], [3, 4], [3, 7], [3, 8],
+                 [3, 13], [3, 14], [3, 16], [4, 7], [4, 15], [4, 18], [5, 10], [5, 16], [6, 18], [7, 8], [8, 13],
+                 [8, 16], [8, 17], [9, 17], [9, 18], [10, 11], [10, 13], [10, 17], [11, 16], [11, 17], [12, 18],
+                 [12, 19], [13, 14], [13, 15], [13, 18], [14, 19], [17, 18]]
+
+        lca1 = LCA.findLCA(graph, 5, 10, 19)
+        lca2 = LCA.findLCA(graph, 1, 14, 18)
+
+        self.assertEqual(lca, 5, f'Incorrect LCA {lca1}. Should be {5}')
+        self.assertEqual(lca2, 0, f'Incorrect LCA {lca2}. Should be {0}')
+
 
     def test_non_acyclic_graph(self):
         """Tests a simple, non-acyclic graph"""
