@@ -1,10 +1,16 @@
-# This function returns pointer to LCA of two given
-# values n1 and n2
-# This function assumes that n1 and n2 are present in
-# Binary Tree
+from binarytree import Node
+import networkx as nx
 
 
-def findLCA(root, n1, n2):
+def findLCA(graph=None, *args):
+    if isinstance(graph, Node):
+        return findLCABinaryTree(graph, args[0], args[1])
+    elif isinstance(graph, list):
+        return findLCAdag(graph, args)
+    else:
+        return False
+
+def findLCABinaryTree(root, n1, n2):
     # Base Case
     if n1 == n2:
         return n1
@@ -29,3 +35,10 @@ def findLCA(root, n1, n2):
 
         # Otherwise check if left subtree or right subtree is LCA
     return left_lca if left_lca is not None else right_lca
+
+def findLCAdag(graph, args):
+
+    # Convert to networkX diGraph
+    g = nx.DiGraph(graph)
+    if nx.is_directed_acyclic_graph(g):
+        return nx.lowest_common_ancestor(g, args[0], args[1])
