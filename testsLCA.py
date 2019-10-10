@@ -138,16 +138,23 @@ class MyTestCase(unittest.TestCase):
                  [8, 16], [8, 17], [9, 17], [9, 18], [10, 11], [10, 13], [10, 17], [11, 16], [11, 17], [12, 18],
                  [12, 19], [13, 14], [13, 15], [13, 18], [14, 19], [17, 18]]
 
-        lca1 = LCA.findLCA(graph, 0, 19) # Should be 0
-        lca2 = LCA.findLCA(graph, 17, 15) # Should be 8
-        lca3 = LCA.findLCA(graph, 5, 10, 19)  # Should be 5
-        lca4 = LCA.findLCA(graph, 1, 14, 18) # Should be 0
+        lca1 = LCA.findLCA(graph, 0, 19)
+        lca2 = LCA.findLCA(graph, 17, 15)
+        lca3 = LCA.findLCA(graph, 5, 10, 19)
+        lca4 = LCA.findLCA(graph, 1, 14, 18)
 
         self.assertEqual(lca1, 0, f'Incorrect LCA {lca1}. Should be {0}')
         self.assertEqual(lca2, 8, f'Incorrect LCA {lca2}. Should be {8}')
         self.assertEqual(lca3, 5, f'Incorrect LCA {lca3}. Should be {5}')
         self.assertEqual(lca4, 0, f'Incorrect LCA {lca4}. Should be {0}')
 
+    def test_non_acyclic_graph(self):
+        """Tests a simple, non-acyclic graph"""
+        graph = [[0,1], [1,2], [2,3], [3,4], [3,2], [4,0]]
+
+        lca = LCA.findLCA(graph, 3, 2)
+        self.assertEqual(lca, False, f'Incorrect LCA {lca}. Should be {False}')
+    
 
 if __name__ == '__main__':
     unittest.main()
