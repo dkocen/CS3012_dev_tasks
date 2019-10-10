@@ -20,8 +20,11 @@ class MyTestCase(unittest.TestCase):
         """Test that single node tree returns single node for LCA"""
 
         root = tree(height=0)
-        lca = LCA.findLCA(root, root, root)
-        self.assertEqual(lca, root, f'Incorrect LCA: {lca}. Should be {root}')
+        lca1 = LCA.findLCA(root, root, root)
+        lca2 = LCA.findLCA(root, root.left, root.right)
+
+        self.assertEqual(lca1, root, f'Incorrect LCA: {lca1}. Should be {root}')
+        self.assertEqual(lca2, False, f'Incorrect LCA: {lca2}. Should be {False}')
 
     def test_simple_tree(self):
         """Tests simple binary tree where root is LCA"""
@@ -104,6 +107,36 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(lca3, root.left.right.left.left,
                          f'Incorrect LCA {lca3}. Should be {root.left.right.left.left}')
 
+    def test_invalid_leaves_bt(self):
+        """Test for if requested nodes are not part of tree. Should return False"""
+
+        root = Node(67)
+        root.left = Node(11)
+        root.right = Node(82)
+        root.left.left = Node(4)
+        root.left.right = Node(60)
+        root.left.right.left = Node(52)
+
+        lca = LCA.findLCA(root, root.left.left.left, root.right.right.right)
+
+        self.assertEqual(lca, False, f'Incorrect LCA {lca}. Should be {False}')
+
+    def test_empty_dag(self):
+        """Tests an empty DAG"""
+
+        graph = []
+        lca = LCA.findLCA(graph)
+
+        self.assertEqual(lca, False, f'Incorrect LCA {lca}. Should be {False}')
+
+    def test_single_node_dag(self):
+        """Tests a single node DAG"""
+
+        graph = [0]
+        lca = LCA.findLCA(graph, 0, 0)
+
+        self.assertEqual(lca, 0, f'Incorrect LCA {lca}. Should be {0}')
+
     def test_simple_dag(self):
         """Tests a basic DAG"""
 
@@ -165,14 +198,20 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(lca, 5, f'Incorrect LCA {lca1}. Should be {5}')
         self.assertEqual(lca2, 0, f'Incorrect LCA {lca2}. Should be {0}')
 
-
     def test_non_acyclic_graph(self):
         """Tests a simple, non-acyclic graph"""
-        graph = [[0,1], [1,2], [2,3], [3,4], [3,2], [4,0]]
+        graph = [[0, 1], [1, 2], [2, 3], [3, 4], [3, 2], [4, 0]]
 
         lca = LCA.findLCA(graph, 3, 2)
         self.assertEqual(lca, False, f'Incorrect LCA {lca}. Should be {False}')
 
+    def test_invalid_nodes_dag(self):
+        """Test for if requested nodes are not part of DAG. Should return False"""
+
+        graph = [[0, 1], [0, 2], [1, 3], [2, 4], [3, 5], [4, 5], [5, 6]]
+
+        lca = LCA.findLCA(graph, 7, 8)
+        self.assertEqual(lca, False, f'Incorrect LCA {lca}. Should be {False}')
 
 if __name__ == '__main__':
     unittest.main()
