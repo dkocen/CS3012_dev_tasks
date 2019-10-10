@@ -10,11 +10,11 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(True, True)
 
     def test_empty_tree(self):
-        """Test that an empty tree returns None for LCA"""
+        """Test that an empty tree returns False for LCA. Logic is considering empty tree to not be a tree"""
 
         root = None
         lca = LCA.findLCA(root, root, root)
-        self.assertEqual(lca, None, f'Incorrect LCA: {lca}. Should be {None}')
+        self.assertEqual(lca, False, f'Incorrect LCA: {lca}. Should be {False}')
 
     def test_single_node(self):
         """Test that single node tree returns single node for LCA"""
@@ -108,7 +108,7 @@ class MyTestCase(unittest.TestCase):
                          f'Incorrect LCA {lca3}. Should be {root.left.right.left.left}')
 
     def test_invalid_leaves_bt(self):
-        """Test for if requested nodes are not part of tree. Should return False"""
+        """Test for if requested nodes are not part of tree. Should return None"""
 
         root = Node(67)
         root.left = Node(11)
@@ -117,12 +117,15 @@ class MyTestCase(unittest.TestCase):
         root.left.right = Node(60)
         root.left.right.left = Node(52)
 
-        lca = LCA.findLCA(root, root.left.left.left, root.right.right.right)
+        stray_node1 = Node(33)
+        stray_node2 = Node(76)
 
-        self.assertEqual(lca, False, f'Incorrect LCA {lca}. Should be {False}')
+        lca = LCA.findLCA(root, stray_node1, stray_node2)
+
+        self.assertEqual(lca, None, f'Incorrect LCA {lca}. Should be {None}')
 
     def test_empty_dag(self):
-        """Tests an empty DAG"""
+        """Tests an empty DAG. Considering an empyt DAG to not be a DAG"""
 
         graph = []
         lca = LCA.findLCA(graph)
@@ -199,7 +202,7 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(lca2, 0, f'Incorrect LCA {lca2}. Should be {0}')
 
     def test_non_acyclic_graph(self):
-        """Tests a simple, non-acyclic graph"""
+        """Tests a simple, non-acyclic graph. Returns false because not DAG"""
         graph = [[0, 1], [1, 2], [2, 3], [3, 4], [3, 2], [4, 0]]
 
         lca = LCA.findLCA(graph, 3, 2)

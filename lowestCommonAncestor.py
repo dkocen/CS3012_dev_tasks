@@ -8,7 +8,7 @@ def findLCA(graph=None, *args):
     elif isinstance(graph, list):
         return findLCAdag(graph, args)
     else:
-        return None
+        return False
 
 def findLCABinaryTree(root, n1, n2):
     # Base Case
@@ -44,3 +44,5 @@ def findLCAdag(graph, args):
     g = nx.DiGraph(graph)
     if nx.is_directed_acyclic_graph(g):
         return nx.lowest_common_ancestor(g, args[0], args[1])
+    else:
+        return False
