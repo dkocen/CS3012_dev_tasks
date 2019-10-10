@@ -8,7 +8,7 @@ def findLCA(graph=None, *args):
     elif isinstance(graph, list):
         return findLCAdag(graph, args)
     else:
-        return False
+        return None
 
 def findLCABinaryTree(root, n1, n2):
     # Base Case
@@ -24,8 +24,8 @@ def findLCABinaryTree(root, n1, n2):
         return root
 
         # Look for keys in left and right subtrees
-    left_lca = findLCA(root.left, n1, n2)
-    right_lca = findLCA(root.right, n1, n2)
+    left_lca = findLCABinaryTree(root.left, n1, n2)
+    right_lca = findLCABinaryTree(root.right, n1, n2)
 
     # If both of the above calls return Non-NULL, then one key
     # is present in once subtree and other is present in other,
@@ -37,7 +37,9 @@ def findLCABinaryTree(root, n1, n2):
     return left_lca if left_lca is not None else right_lca
 
 def findLCAdag(graph, args):
-
+    # Check if empty graph
+    if not graph:
+        return False
     # Convert to networkX diGraph
     g = nx.DiGraph(graph)
     if nx.is_directed_acyclic_graph(g):

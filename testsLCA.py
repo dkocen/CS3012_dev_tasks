@@ -24,7 +24,7 @@ class MyTestCase(unittest.TestCase):
         lca2 = LCA.findLCA(root, root.left, root.right)
 
         self.assertEqual(lca1, root, f'Incorrect LCA: {lca1}. Should be {root}')
-        self.assertEqual(lca2, False, f'Incorrect LCA: {lca2}. Should be {False}')
+        self.assertEqual(lca2, None, f'Incorrect LCA: {lca2}. Should be {None}')
 
     def test_simple_tree(self):
         """Tests simple binary tree where root is LCA"""
@@ -195,7 +195,7 @@ class MyTestCase(unittest.TestCase):
         lca1 = LCA.findLCA(graph, 5, 10, 19)
         lca2 = LCA.findLCA(graph, 1, 14, 18)
 
-        self.assertEqual(lca, 5, f'Incorrect LCA {lca1}. Should be {5}')
+        self.assertEqual(lca1, 5, f'Incorrect LCA {lca1}. Should be {5}')
         self.assertEqual(lca2, 0, f'Incorrect LCA {lca2}. Should be {0}')
 
     def test_non_acyclic_graph(self):
