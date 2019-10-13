@@ -176,7 +176,7 @@ class MyTestCase(unittest.TestCase):
         lca2 = LCA.findLCA(graph, 17, 15)
 
         self.assertEqual(lca1, 0, f'Incorrect LCA {lca1}. Should be {0}')
-        self.assertEqual(lca2, 8, f'Incorrect LCA {lca2}. Should be {8}')
+        self.assertEqual(lca2, 4, f'Incorrect LCA {lca2}. Should be {4}')
 
     def test_slides_dag_multnodes(self):
         """Tests slides DAG LCA for multiple nodes"""

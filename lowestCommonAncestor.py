@@ -42,6 +42,12 @@ def findLCAdag(graph, args):
     # Check if empty graph
     if not graph:
         return False
+
+    # If graph is just a single node reformat graph so it is a node with a self-loop
+    # This allows the nx.DiGraph function to work
+    if len(graph) == 1:
+        value = graph[0]
+        graph = [[value, value]]
     # Convert to networkX diGraph
     g = nx.DiGraph(graph)
 
