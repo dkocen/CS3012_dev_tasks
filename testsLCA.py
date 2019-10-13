@@ -214,7 +214,7 @@ class MyTestCase(unittest.TestCase):
         graph = [[0, 1], [0, 2], [1, 3], [2, 4], [3, 5], [4, 5], [5, 6]]
 
         lca = LCA.findLCA(graph, 7, 8)
-        self.assertEqual(lca, False, f'Incorrect LCA {lca}. Should be {False}')
+        self.assertEqual(lca, None, f'Incorrect LCA {lca}. Should be {False}')
 
 if __name__ == '__main__':
     unittest.main()

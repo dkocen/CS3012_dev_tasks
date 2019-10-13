@@ -23,10 +23,13 @@ The second task adds functionality for finding the LCA of any directed acyclic g
 	- If DAG should be node numbers
 
 ### Function Outputs
-Returns Node instance if finding the LCA of a binary tree
-Returns node number if finding the LCA of a DAG
-Returns None if no LCA exists (usually asking to find LCA of node that is not part of tree or DAG)
-Returns False if graph is neither a Node instance or list of list corresponding to a DAG
+Returns Node instance if finding the LCA of a binary tree.
+
+Returns node number if finding the LCA of a DAG.
+
+Returns None if no LCA exists (usually asking to find LCA of node that is not part of tree or DAG).
+
+Returns False if graph is neither a Node instance or list of list corresponding to a DAG.
 
 ### Current Issues
 - Does not work if requesting to find LCA of more than two nodes
