@@ -33,5 +33,6 @@ Returns False if graph is neither a Node instance or list of list corresponding 
 
 ### Current Issues
 - Does not work if requesting to find LCA of more than two nodes.
+- Does not work for trees that are non-binary.
 - Only works with integer values in Nodes for binary tree. Can have repeats though.
 - Only works for integer values for nodes in DAG. Cannot have repeat values either.
