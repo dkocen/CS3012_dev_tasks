@@ -32,5 +32,6 @@ Returns None if no LCA exists (usually asking to find LCA of node that is not pa
 Returns False if graph is neither a Node instance or list of list corresponding to a DAG.
 
 ### Current Issues
-- Does not work if requesting to find LCA of more than two nodes
-- Unable to find LCA of single node DAG
+- Does not work if requesting to find LCA of more than two nodes.
+- Only works with integer values in Nodes for binary tree. Can have repeats though.
+- Only works for integer values for nodes in DAG. Cannot have repeat values either.
