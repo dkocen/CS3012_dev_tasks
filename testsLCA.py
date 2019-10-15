@@ -149,5 +149,15 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(lca2, 1, f'Incorrect LCA {lca2}. Should be {1}')
         self.assertEqual(lca3, 1, f'Incorrect LCA {lca3}. Should be {1}')
 
+    def test_different_values_tree(self):
+        data = [7, 10, 'a', 'b', True, '5', 'c', False, 'value']
+
+        root = build(data)
+        lca1 = LCA.findLCA(root, root.left, root.right) # Root
+        lca2 = LCA.findLCA(root, root.left.left, root.left.right) # 10
+
+        self.assertEqual(lca1, root, f'Incorrect LCA {lca1}. Should be {root}')
+        self.assertEqual(lca2, root.left, f'Incorrect LCA {lca2}. Should be {root.left}')
+
 if __name__ == '__main__':
     unittest.main()
